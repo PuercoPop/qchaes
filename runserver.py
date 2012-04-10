@@ -14,12 +14,9 @@ except ImportError:
 import settings
 sys.path.insert(0, settings.ROOT_DIR)  # Insert Root dir into Path
 
-from flask import Flask
-#from qchapp.views import *
-import qchapp.views
+from qchapp import app
 import settings
 
-app = Flask(__name__)
 app.secret_key = settings.SECRET_KEY
 app.debug = True
 if app.debug:
@@ -30,4 +27,4 @@ if app.debug:
     app.logger.addHandler(file_handler)
 
 if __name__ == '__main__':
-    qchapp.app.run()
+    app.run(debug=True)
