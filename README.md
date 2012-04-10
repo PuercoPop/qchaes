@@ -20,9 +20,20 @@ override from settings.py
 + Write Tests
 + Pull Requests
 
-##Authors
-####MainMantainer
+## REQUIREMENTS
+
++ __Flask__: A Web Microframewrok
++ __mongoengine__: A NoSQL database
++ __translitcodec__: A Unicode to 8-bit charset transliteration codec
++ __WTForms__: a forms validation and rendering library for python web development
++ __Flask-WTF__: Integration of WTForms with Flask
++ __wtforms-recaptcha__: is a convenient field for WTForms that transparently handles reCaptcha display and validation via corresponding widget and validator classes.
+
+***
+
+#Authors
+###MainMantainer
 ivoscc@gmail.com
 
-####Colaborator
+###Colaborator
 PuercoPop pirata@gmail.com
