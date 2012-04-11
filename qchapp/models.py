@@ -59,14 +59,14 @@ class Entry(Document):
 
     # Use this method instead of attribute to get sorted definition list
     def get_definitions(self):
-        return sorted(self.definitions,\
-                      key=attrgetter('points'),\
+        return sorted(self.definitions,
+                      key=attrgetter('points'),
                       reverse=True)
 
     #Returns the definition with the most points
     def get_hero(self):
-        return sorted(self.definitions,\
-                      key=attrgetter('points'),\
+        return sorted(self.definitions,
+                      key=attrgetter('points'),
                       reverse=True)[0]
 
     def save(self, *args, **kwargs):
@@ -114,15 +114,15 @@ class Entry(Document):
         """ % characters
         return  Entry.objects.exec_js(code)
 
-    @staticmethod
-    def get_random():
-        code = """
-        rand = Math.random()
-        cmp = Math.random()
-        result = db.entry.findOne( {random : { $gte : rand } } )
-        if ( result == null ) {
-            result = db.entry.findOne( {random : { $lte : rand } } )
-        }
-        return result;
+    @classmethod
+    def get_random(cls):
         """
-        return Entry.objects.exec_js(code)
+        Get random a random Entry.
+        """
+        random_number = random()
+
+        rand_entry = cls.objects.filter(random__gte=random_number).first()
+        if rand_entry is None:
+            rand_entry = cls.objects.filter(random__lte=random_number)
+
+        return rand_entry
