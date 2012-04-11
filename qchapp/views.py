@@ -17,11 +17,17 @@ import simplejson
 
 @app.route('/')
 def main():
+    """
+    Presents main Page
+    With 3 random words on the front page if DB has more than 3 words.
+    """
     samples = []
 
     for i in range(3):
-        e = Entry.objects.get(slug=Entry.get_random()['slug'])
-        samples.append({'name': e.name, 'definition': e.get_hero()})
+        #e = Entry.objects.get(slug=Entry.get_random()['slug'])
+        entry = Entry.get_random()
+        if entry:
+            samples.append({'name': entry.name, 'definition': entry.get_hero()})
 
     return render_template(
             'main.html',
@@ -132,8 +138,14 @@ def show_def(def_id):
 
 @app.route('/random')
 def random():
-    word = Entry.get_random()['slug']
-    return redirect(url_for('qchar', word=word))
+    word = Entry.get_random()
+
+    # Test if an entry was returned
+    if word:
+        word = word['slug']
+        return redirect(url_for('qchar', word=word))
+    else:
+        return ""
 
 
 @app.route('/buscar/<int:page>/')
