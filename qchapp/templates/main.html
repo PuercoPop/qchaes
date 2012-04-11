@@ -36,22 +36,16 @@ $(document).ready(function() {
         {% endfor %}
     </ul></div>
 
-    <div class="row" style='min-height:200px;'>
+    {% if samples %} {# Check if at least one sample #}
+    <div class='row' style='min-height:200px;'>
+    {% for word in samples %}
         <div class="span6">
-            <h2 style='overflow:hidden;'>{{ samples.0.name|capitalize }}</h2>
-            <p> {{ samples.0.definition.content|capitalize }}</p>
-            <p><a class="btn" href="/{{ samples.0.name }}">Ver definiciones</a></p>
+            <h2 style='overflow:hidden;'><{{ sample.name|capitalize }}</h2>
+            <p>{{ sample.definition.content|capitalize }}</p>
+            <p><a class='btn' href='/{{ sample.name }}'>Ver definiciones</a></p>
         </div>
-        <div class="span5">
-            <h2 style='overflow:hidden;'>{{ samples.1.name|capitalize }}</h2>
-            <p> {{ samples.1.definition.content|capitalize }}</p>
-            <p><a class="btn" href="/{{ samples.1.name }}">Ver definiciones</a></p>
-        </div>
-        <div class="span5">
-            <h2 style='overflow:hidden;'>{{ samples.2.name|capitalize }}</h2>
-            <p> {{ samples.2.definition.content|capitalize }}</p>
-            <p><a class="btn" href="/{{ samples.2.name }}">Ver definiciones</a></p>
-        </div>
+    {% endfor %}
     </div>
+    {% endif %}
 </div>
 {% endblock %}
