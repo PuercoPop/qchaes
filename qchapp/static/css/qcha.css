@@ -1,0 +1,30 @@
+.hero-unit {
+    background: #A1AC88;
+    height: auto;
+    padding-top: 25px;
+    padding-bottom: 15px;
+}
+
+.hero-unit .title {
+    text-shadow: #554 0.1em 0.03em 01.em;
+}
+
+.pagination a{
+    padding-left:12px;
+    color:i;
+}
+
+.pagination a:hover{
+    color:#fff;
+    background-color:#464D70;
+}
+
+.modal {
+    width:800px;
+    word-wrap:break-word;
+    background:#f5f5f5;
+}
+
+.modal-body {
+    background:#fff;
+}

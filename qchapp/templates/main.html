@@ -1,12 +1,5 @@
 {% extends 'base.html' %}
 {% block title %} Que cha es? - Definiciones de jerga callejera{% endblock %}
-{% block extra_style %}
-.hero-unit {background:#A1AC88;height:auto;padding-top:25px;padding-bottom:15px;}
-.pagination a{padding-left:12px;color:i}
-.pagination a:hover{color:#fff;background-color:#464D70;}
-.modal {width:800px;word-wrap:break-word;background:#f5f5f5;}
-.modal-body {background:#fff;}
-{% endblock %}
 {% block extra_scripts %}
 $(document).ready(function() {
     var a = $('.row p');
@@ -22,8 +15,9 @@ $(document).ready(function() {
 <div class="container">
     <div class="hero-unit">
     <br>
-        <h1>Que cha' es?</h1>
-        <p>Definiciones de jerga callejera y palabras que ning&uacute;n diccionario decente se atrever&iacute;a a decirte.</p>
+        <h1 class="title">Qué cha es?</h1>
+        <p>Definiciones de jerga callejera y palabras que ningún diccionario
+        decente se atrevería a decirte.</p>
         <form action='/buscar/0/' method='get'>
         <input type='search' name='b' class='span4'> &nbsp;
         <input type='submit' class="btn large primary" value='Buscar'>
