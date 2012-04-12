@@ -1,11 +1,10 @@
 # -*- coding: utf-8 -*-
 
 import re
-from wtforms import Form, BooleanField, TextField, TextAreaField, validators, ValidationError
+from settings import RECAPTCHA_PUB_KEY, RECAPTCHA_PRIV_KEY
+from wtforms import Form, BooleanField, TextField, TextAreaField, validators, \
+        ValidationError
 from wtfrecaptcha.fields import RecaptchaField
-
-RECAPTCHA_PUB_KEY = ""
-RECAPTCHA_PRIV_KEY = ""
 
 
 def validate_entry(form, field):
@@ -16,8 +15,10 @@ def validate_entry(form, field):
 class DefinitionForm(Form):
     captcha = RecaptchaField(
             public_key=RECAPTCHA_PUB_KEY,
-            private_key=RECAPTCHA_PRIV_KEY, secure=True
-    )
+            private_key=RECAPTCHA_PRIV_KEY,
+            #secure=True,
+            secure=False,
+        )
 
     entry = TextField('Termino*',
                       [validate_entry,

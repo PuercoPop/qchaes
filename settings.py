@@ -1,7 +1,8 @@
 # -*- coding:utf-8 -*-
 
-# Project Dirs
 from os.path import dirname, join, realpath
+
+# Project Dirs
 ROOT_DIR = realpath(join(dirname(__file__)))
 TEMPLATE_DIR = realpath(join(dirname(__file__), 'templates'))
 DATA_DIR = realpath(join(dirname(__file__), 'data'))
@@ -20,6 +21,11 @@ DB_HOST = 'localhost'
 DB_PORT = 27017
 DB_USER = ''
 DB_PASSWORD = ''
+
+# RECAPTCHA
+
+RECAPTCHA_PUB_KEY = ""
+RECAPTCHA_PRIV_KEY = ""
 
 # Override Default Settings
 try:

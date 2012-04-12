@@ -38,7 +38,7 @@ $(document).ready(function() {
 
     {% if samples %} {# Check if at least one sample #}
     <div class='row' style='min-height:200px;'>
-    {% for word in samples %}
+    {% for sample in samples %}
         <div class="span6">
             <h2 style='overflow:hidden;'><{{ sample.name|capitalize }}</h2>
             <p>{{ sample.definition.content|capitalize }}</p>
