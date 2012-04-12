@@ -123,6 +123,6 @@ class Entry(Document):
 
         rand_entry = cls.objects.filter(random__gte=random_number).first()
         if rand_entry is None:
-            rand_entry = cls.objects.filter(random__lte=random_number)
+            rand_entry = cls.objects.filter(random__lte=random_number).first()
 
         return rand_entry
