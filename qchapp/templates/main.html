@@ -40,7 +40,7 @@ $(document).ready(function() {
     <div class='row' style='min-height:200px;'>
     {% for sample in samples %}
         <div class="span6">
-            <h2 style='overflow:hidden;'><{{ sample.name|capitalize }}</h2>
+            <h2 style='overflow:hidden;'>{{ sample.name|capitalize }}</h2>
             <p>{{ sample.definition.content|capitalize }}</p>
             <p><a class='btn' href='/{{ sample.name }}'>Ver definiciones</a></p>
         </div>
