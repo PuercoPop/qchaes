@@ -1,4 +1,7 @@
 {% extends 'base.html' %}
+{% block local_onload %}
+  {# Put Spidey Here #}
+{% endblock %}
 {% block title %}¿Q cha es {{word}}?{% endblock %}
 {% block extra_scripts %}
 var RecaptchaOptions={theme:'white',lang:'es',};
@@ -12,60 +15,47 @@ $(document).ready(function(){
 });
 {% endblock%}
 {% block content %}
-<div class='row'>
-  <div class='span9 offset2'>
+<div class='row-fluid'>
+  <div class='span6 offset3'>
   <h1>Escribe tu definición</h1>
-  <div class="modal" style="position: relative; top: auto; left: auto; margin: 0 auto; z-index: 1">
-    <div class="modal-body">
-      <form action='' method='post'>
-        <fieldset>
-          <div class="clearfix">
-            <label for="palabra">Palabra</label>
-            <div class="input">
-              {{ form.entry|safe }}
-              {% if form.entry.errors %}
-                {% for error in form.entry.errors %}
-                  {{ error }}
-                {% endfor %}
-              {% endif %}
-            </div>
+      <form class="well" action='.' method='post'>
+        <label for="palabra">Palabra</label>
+        <div class="input">
+          {{ form.entry|safe }}
+          {% if form.entry.errors %}
+            {% for error in form.entry.errors %}
+              {{ error }}
+            {% endfor %}
+          {% endif %}
+        </div>
+        <label for="definicion">Definición</label>
+        <div class="input">
+          {{ form.definition(class="input-xlarge word-definition",rows="5")|safe }}
+          {# refactor to inline if of jinja #}
+          {% if form.definition.errors %}
+            {% for error in form.definition.errors %}
+              {{ error }}
+            {% endfor %}
+          {% endif %}
+        </div>
+        <label for="example">Ejemplo (opcional):</label>
+          <div class="input">
+            {{ form.example(class="xlarge",rows="5")|safe }}
+            {% if form.example.errors %}
+              {% for error in form.example.errors %}
+                {{ error }}
+              {% endfor %}
+            {% endif %}
           </div>
-          <img class='helper' style='position:absolute;right:0;display:none;' src='/static/images/spiderman.png' />
-          <div class="clearfix">
-            <label for="definicion">Definición</label>
-            <div class="input">
-                {{ form.definition(class="xlarge",rows="5")|safe }}
-                {% if form.definition.errors %}
-                    {% for error in form.definition.errors %}
-                        {{ error }}
-                    {% endfor %}
-                {% endif %}
-            </div>
-          </div>
-          <div class="clearfix">
-            <label for="example">Ejemplo (opcional):</label>
-            <div class="input">
-              {{ form.example(class="xlarge",rows="5")|safe }}
-              {% if form.example.errors %}
-                {% for error in form.example.errors %}
-                  {{ error }}
-                {% endfor %}
-              {% endif %}
-            </div>
-          </div>
-          <div class='captcha' style='margin-left:150px;'>
+          <div class='captcha'>
             {{ form.captcha }}
             {% if form.captcha.errors %}
               {{ form.captcha.errors }}
             {% endif %}
           </div>
-        </div>
         <div class="actions">
-            <input type="submit" class="btn primary" value="Guardar">
+            <input type="submit" class="btn btn-primary" value="Guardar">
         </div>
-        </fieldset>
       </form>
-    </div>
-  </div>
 </div>
 {% endblock%}

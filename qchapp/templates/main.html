@@ -12,21 +12,25 @@ $(document).ready(function() {
 {% endblock %}
 
 {% block content %}
-<div class="container">
-  <div class="hero-unit">
-    <h1>¿Qué cha es?</h1>
-    <p>Definiciones de jerga callejera y palabras que ningún diccionario decente se atrevería a decirte.</p>
-    <form class="form-horizontal" action='/buscar/0/' method='get'>
-      <input type='search' name='b' class='span4'> 
-      <input type='submit' class="btn btn-large btn-primary" value='Buscar'>
-    </form>
+<div class="row-fliud">
+  <div class="span10 offset1">
+    <div class="hero-unit">
+      <h1>¿Qué cha es?</h1>
+      <p>Definiciones de jerga callejera y palabras que ningún diccionario decente se atrevería a decirte.</p>
+      <form class="form-horizontal" action='/buscar/0/' method='get'>
+        <input type='search' name='b' class='span4'> 
+        <input type='submit' class="btn btn-large btn-primary" value='Buscar'>
+      </form>
+    </div>
   </div>
+</div>
 
   {# Display 3 Random Words #}
   {% if samples %} {# Check if at least one sample #}
-    <div class='row' style='min-height:200px;'>
+    <div class='row-fluid'>
+      <div class="span1"></div>
       {% for sample in samples %}
-        <div class="span4">
+        <div class="span3">
           <h2 style='overflow:hidden;'>{{ sample.name|capitalize }}</h2>
           <p>{{ sample.definition.content|capitalize }}</p>
           <p>
@@ -34,10 +38,12 @@ $(document).ready(function() {
           </p>
         </div>
       {% endfor %}
+      <div class="span2"></div>
     </div>
   {% endif %}
 
   {# Display Alphabet: Search by letter #}
+<div class="row-fluid">
   <div class="pagination">
     <ul>
       {% for letter in letters %}
@@ -47,6 +53,7 @@ $(document).ready(function() {
       {% endfor %}
     </ul>
   </div>
+</div>
 
 </div>
 {% endblock %}

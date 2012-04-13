@@ -1,17 +1,17 @@
 {% extends 'base.html' %}
 {% block title %}¿Q cha es {% if entry is defined %}{{ entry.name }}{% else %}{{ word }}{% endif %}?{% endblock %}
-{% block extra_scripts %}
-$(document).ready(function() {
+{% block local_onload %}
+  $(document).ready(function() {
     var a = $('.modal-body');
     $.each(a,function(i,b){
       if ($(b).html() != " "){
         $(b).html($(b).html().replace(/[\*]{1}([a-zA-Z0-9_\sáéíóúñÁÉÍÓÚÑ]+)[\*]{1}/g,"<a href='/$1' class='interlink'>$1</a>"))
       }
     });
-});
+  });
 {% endblock %}
 {% block content %}
-<div class='row'>
+<div class='row-fluid'>
   <div class='span9 offset2'>
   {% if entry is defined %}
     <h1>Que cha' es <i>{{ entry.name|capitalize }}</i>?</h1>
@@ -19,16 +19,16 @@ $(document).ready(function() {
     {% for def in definitions %}
       {{ render_definition(def,entry.name,'word') }}<br>
     {% endfor %}
-    <a href="/definir/{{ entry.name }}" class="btn large danger">Define {{ entry.name|capitalize}}</a>
-    <a href="/definir/x" class="btn large primary">Otra palabra</a>
+    <a href="/definir/{{ entry.name }}" class="btn btn-large btn-danger">Define {{ entry.name|capitalize}}</a>
+    <a href="/definir/x" class="btn btn-large btn-primary">Otra palabra</a>
   {% else %}
     <h1>
         Que cha' es <i>{{ word|capitalize }}</i>?
         <small> - <a href='/definir/{{ word }}' class="btn large
             danger">Defínela tú</a></small>
     </h1>
-    No tenemos una definici&oacute;n para {{ word }}.
-    <a href='/definir/{{ word }}'>Agrega una.</a>
+    No tenemos una definición para {{ word }}.
+    <a href='/definir/{{ word }}'>Agrega una tú.</a>
   {% endif %}
   </div>
 </div>
