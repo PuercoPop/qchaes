@@ -1,3 +1,14 @@
+/* header */
+
+a.brand {
+    margin-left:10px;
+}
+span.brand-es {
+    color: #8EB1B0;
+}
+
+/* content */
+
 .hero-unit {
     background: #A1AC88;
     height: auto;
