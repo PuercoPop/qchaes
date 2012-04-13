@@ -35,6 +35,8 @@ override from settings.py
 + __Flask-WTF__: Integration of WTForms with Flask
 + __wtforms-recaptcha__: is a convenient field for WTForms that transparently handles reCaptcha display and validation via corresponding widget and validator classes.
 
+## Qcha Wiki
++ [Ver más en el Wiki](https://github.com/PuercoPop/qchaes/wiki/Qcha-Wiki)
 ***
 
 #Authors
