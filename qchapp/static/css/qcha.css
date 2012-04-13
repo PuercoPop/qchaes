@@ -9,18 +9,17 @@ span.brand-es {
 
 /* content */
 
-.hero-unit {
-    background: #A1AC88;
-    height: auto;
-    padding-top: 25px;
-    padding-bottom: 15px;
+div.hero-unit {
+    background: #6AC;
+    background-image: url('/static/images/texture/texture.png'); 
+    margin-top:4em;
 }
 
-.hero-unit .title {
+div.hero-unit h1{
     text-shadow: #554 0.1em 0.03em 01.em;
 }
 
-.pagination a{
+.pagination a {
     padding-left:12px;
     color:i;
 }

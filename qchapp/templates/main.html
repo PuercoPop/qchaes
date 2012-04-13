@@ -13,33 +13,40 @@ $(document).ready(function() {
 
 {% block content %}
 <div class="container">
-    <div class="hero-unit">
-    <br>
-        <h1 class="title">Qué cha es?</h1>
-        <p>Definiciones de jerga callejera y palabras que ningún diccionario
-        decente se atrevería a decirte.</p>
-        <form action='/buscar/0/' method='get'>
-        <input type='search' name='b' class='span4'> &nbsp;
-        <input type='submit' class="btn large primary" value='Buscar'>
-        </form>
-    </div>
+  <div class="hero-unit">
+    <h1>¿Qué cha es?</h1>
+    <p>Definiciones de jerga callejera y palabras que ningún diccionario decente se atrevería a decirte.</p>
+    <form class="form-horizontal" action='/buscar/0/' method='get'>
+      <input type='search' name='b' class='span4'> 
+      <input type='submit' class="btn btn-large btn-primary" value='Buscar'>
+    </form>
+  </div>
 
-    <div class="pagination"><ul>
-        {% for i in letters %}
-        <li><a href="/letra/{{i}}/0/">{{ i }}</a></li>
-        {% endfor %}
-    </ul></div>
-
-    {% if samples %} {# Check if at least one sample #}
+  {# Display 3 Random Words #}
+  {% if samples %} {# Check if at least one sample #}
     <div class='row' style='min-height:200px;'>
-    {% for sample in samples %}
-        <div class="span6">
-            <h2 style='overflow:hidden;'>{{ sample.name|capitalize }}</h2>
-            <p>{{ sample.definition.content|capitalize }}</p>
-            <p><a class='btn' href='/{{ sample.name }}'>Ver definiciones</a></p>
+      {% for sample in samples %}
+        <div class="span4">
+          <h2 style='overflow:hidden;'>{{ sample.name|capitalize }}</h2>
+          <p>{{ sample.definition.content|capitalize }}</p>
+          <p>
+            <a class='btn btn-success' href='/{{ sample.name }}'>Ver definiciones</a>
+          </p>
         </div>
-    {% endfor %}
+      {% endfor %}
     </div>
-    {% endif %}
+  {% endif %}
+
+  {# Display Alphabet: Search by letter #}
+  <div class="pagination">
+    <ul>
+      {% for letter in letters %}
+        <li>
+          <a href="/letra/{{ letter }}/0/">{{ letter }}</a>
+        </li>
+      {% endfor %}
+    </ul>
+  </div>
+
 </div>
 {% endblock %}

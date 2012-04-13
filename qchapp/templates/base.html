@@ -12,15 +12,6 @@
 <link rel='stylesheet' href="/static/css/qcha.css" type="text/css">
 <script src="/static/js/bootstrap.js"></script>
 <script src="/static/js/qcha.js"></script>
-<title>{% block title %}{% endblock %}</title>
-<style>
-html,body {background-color:transparent;}
-body {background-image:url('/static/images/texture/5.png');}
-.interlink {background-color:#CEDEF4;padding:1px 3px;color:#000;}
-.interlink:hover{background-color:#AEBED4;text-decoration:none;}
-{% block extra_style %}
-{% endblock %}
-</style>
 
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.6.4/jquery.min.js"></script>
 <script src="http://ajax.googleapis.com/ajax/libs/jqueryui/1.8.16/jquery-ui.min.js" type="text/javascript"></script>
@@ -60,6 +51,7 @@ $(document).ready(function() {
   })();
 
 </script>
+<title>{% block title %}{% endblock %}</title>
 </head>
 
 <body>
@@ -74,13 +66,9 @@ $(document).ready(function() {
 
 <a id="zoom31" href="https://www.facebook.com/pages/Q-cha-es/238821336174244" style="display:scroll;position:fixed;bottom:110px;right:10px;"> <img src="/static/images/facebook.png" border="0"></a>
 <a id="zoom31" href="http://twitter.com/#!/qchaes" style="display:scroll;position:fixed;bottom:75px;right:10px;"> <img src="/static/images/twitter.png" border="0"></a>
-
-
+<a id="zoom31" href="http://blog.qcha.es" style="display:scroll;position:fixed;bottom:40px;right:10px;"> <img src="/static/images/tumblr.png" alt="Tumblr de QchaEs." height="32" border="0"></a>
 {% include 'header.html' %}
-<br>
-
 {% block content %}
 {% endblock %}
-
 {% include 'footer.html' %}
 </body>

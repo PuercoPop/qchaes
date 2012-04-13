@@ -1,11 +1,5 @@
 {% extends 'base.html' %}
-{% block title %} Q cha es {% if entry is defined %}{{ entry.name }}{% else %}{{ word }}{% endif %}?{% endblock %}
-{% block extra_style %}
-.modal {width: 600px;word-wrap:break-word;}
-.modal-footer {padding-top:5px;padding-bottom:10px;margin-bottom:10px;background:#fff;height:5px;}
-pre {margin:0;}
-{% endblock %}
-
+{% block title %}¿Q cha es {% if entry is defined %}{{ entry.name }}{% else %}{{ word }}{% endif %}?{% endblock %}
 {% block extra_scripts %}
 $(document).ready(function() {
     var a = $('.modal-body');
@@ -16,32 +10,26 @@ $(document).ready(function() {
     });
 });
 {% endblock %}
-
 {% block content %}
 <div class='row'>
-    <div class='span12 offset4'>
-
-    {% if entry is defined %}
-        <h1>
-        Que cha' es <i>{{ entry.name|capitalize }}</i>?
-        </h1>
-        {% from "_definition.html" import render_definition %}
-        {% for def in definitions %}
-            {{ render_definition(def,entry.name,'word') }}<br>
-        {% endfor %}
-<a href="/definir/{{ entry.name }}" class="btn large danger">Define {{ entry.name|capitalize}}</a>
-<a href="/definir/x" class="btn large primary">Otra palabra</a>
-    {% else %}
-        <h1>
+  <div class='span9 offset2'>
+  {% if entry is defined %}
+    <h1>Que cha' es <i>{{ entry.name|capitalize }}</i>?</h1>
+    {% from "_definition.html" import render_definition %}
+    {% for def in definitions %}
+      {{ render_definition(def,entry.name,'word') }}<br>
+    {% endfor %}
+    <a href="/definir/{{ entry.name }}" class="btn large danger">Define {{ entry.name|capitalize}}</a>
+    <a href="/definir/x" class="btn large primary">Otra palabra</a>
+  {% else %}
+    <h1>
         Que cha' es <i>{{ word|capitalize }}</i>?
-        <small> - <a href='/definir/{{ word }}' class="btn large danger">Def&iacute;nela t&uacute;</a></small>
-        </h1>
-        No tenemos una definici&oacute;n para {{ word }}.
-        <a href='/definir/{{ word }}'>Agrega una.</a>
-    {% endif %}
-
-
-    </div>
-
+        <small> - <a href='/definir/{{ word }}' class="btn large
+            danger">Defínela tú</a></small>
+    </h1>
+    No tenemos una definici&oacute;n para {{ word }}.
+    <a href='/definir/{{ word }}'>Agrega una.</a>
+  {% endif %}
+  </div>
 </div>
 {% endblock %}
