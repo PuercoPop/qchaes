@@ -1,9 +1,9 @@
 # -*- coding: utf-8 -*-
 
 import re
-from mongoengine import connect, EmbeddedDocument, Document, IntField, \
-        StringField, ListField, EmbeddedDocumentField, FloatField, \
-        ReferenceField, CASCADE
+from mongoengine import (connect, EmbeddedDocument, Document, IntField,
+        StringField, ListField, EmbeddedDocumentField, FloatField,
+        ReferenceField, CASCADE)
 from operator import attrgetter
 from random import random
 from utils import slugEncode
@@ -19,34 +19,89 @@ connect(
     )
 
 
-class Example(EmbeddedDocument):
-    body = StringField(max_length=300)
+class Definition(EmbeddedDocument):
     points = IntField(default=0)
+    body = StringField(min_length=15, max_length=300)
+    random = FloatField(min_value=0. max_value=1)
 
+    def __repr__(self):
+        return u'Definition: %r...' % (self.body[:15], )
 
-class NewDefinition(Document):
+    @classmethod
+    def get_random(cls):
+        """
+        Get random a random Entry.
+        """
+        random_number = random()
+
+        rand_entry = cls.objects.filter(random__gte=random_number).first()
+        if rand_entry is None:
+            rand_entry = cls.objects.filter(random__lte=random_number).first()
+
+        if rand_entry is None:
+            return ""
+        else:
+            return rand_entry
+
+class Example(EmbeddedDocument):
+    body = StringField(min_length=15, max_length=300)
+    points = IntField(default=0)
+    random = FloatField(min_value=0. max_value=1)
+
+    def __repr__(self):
+        return u'Example: %r...' % (self.body[:15], )
+
+    @classmethod
+    def get_random(cls):
+        """
+        Get random a random Entry.
+        """
+        random_number = random()
+
+        rand_entry = cls.objects.filter(random__gte=random_number).first()
+        if rand_entry is None:
+            rand_entry = cls.objects.filter(random__lte=random_number).first()
+
+        if rand_entry is None:
+            return ""
+        else:
+            return rand_entry
+
+class Word(Document):
     """
     examples debe ser una a una 'estructura'
     """
+    name = StringField(unique=True, min_length=3, max_length=100)
     points = IntField(default=0)
-    content = StringField(min_length=15, max_length=300)
+    definitions = ListField(EmbeddedDocumentField(Definition))
     examples_t = ListField(EmbeddedDocumentField(Example))
+    random = FloatField(min_value=0. max_value=1)
 
     def __repr__(self):
         return u'Def: %r' % (self.content[:15] + "...")
 
+    @classmethod
+    def get_random(cls):
+        """
+        Get random a random Entry.
+        """
+        random_number = random()
 
-class Definition(Document):
-    """
-    Antigua_def
-    """
-    points = IntField(default=0)
-    content = StringField(min_length=15, max_length=300)
-    example = StringField(max_length=300)
-    examples = ListField(EmbeddedDocumentField(Example))
+        rand_entry = cls.objects.filter(random__gte=random_number).first()
+        if rand_entry is None:
+            rand_entry = cls.objects.filter(random__lte=random_number).first()
 
-    def __repr__(self):
-        return u'Def: %r' % (self.content[:15] + "...")
+        if rand_entry is None:
+            return ""
+        else:
+            return rand_entry
+
+
+    @class_method
+    def get_hero(cls):
+        cls.objects.filter()
+        return self.definitions
+
 
 
 class Entry(Document):
@@ -114,15 +169,3 @@ class Entry(Document):
         """ % characters
         return  Entry.objects.exec_js(code)
 
-    @classmethod
-    def get_random(cls):
-        """
-        Get random a random Entry.
-        """
-        random_number = random()
-
-        rand_entry = cls.objects.filter(random__gte=random_number).first()
-        if rand_entry is None:
-            rand_entry = cls.objects.filter(random__lte=random_number).first()
-
-        return rand_entry
